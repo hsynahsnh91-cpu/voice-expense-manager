@@ -1,0 +1,19 @@
+# =============================================================================
+#  انسخ هذا الملف إلى  local.properties  وعدّل المسار إلى SDK عندك.
+#  (الملف local.properties نفسه لا يُرفع إلى git — وهو مطلوب للبناء)
+#
+#  Android Studio ينشئه تلقائياً عند فتح المجلد، فلا تحتاج تعديله يدوياً
+#  إلا إذا كنت تبني من سطر الأوامر.
+# =============================================================================
+
+# --- Linux ---
+# sdk.dir=/home/USERNAME/Android/Sdk
+
+# --- macOS ---
+# sdk.dir=/Users/USERNAME/Library/Android/sdk
+
+# --- Windows (استخدم \\ أو / ) ---
+# sdk.dir=C\:\\Users\\USERNAME\\AppData\\Local\\Android\\Sdk
+
+# --- اختياري: مسار JDK 17 إن لم يكن الافتراضي ---
+# org.gradle.java.home=/path/to/jdk17

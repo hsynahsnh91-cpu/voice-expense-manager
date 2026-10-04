@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- اللغات المدعومة لكل تطبيق (Android 13+) — التطبيق مصمم بالعربية والإنجليزية -->
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <locale android:name="ar" />
+    <locale android:name="ar-SY" />
+    <locale android:name="en" />
+</locale-config>

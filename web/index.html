@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<meta name="theme-color" content="#0B7A5B">
+<meta name="description" content="صوتي — مدير المصاريف بالصوت بالعامية. سجّل مصروفك بصوتك واحفظه بالليرة السورية الجديدة.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<title>صوتي — مدير المصاريف الصوتي</title>
+
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main" data-i18n="common.next">التالي</a>
+
+<div id="app" class="app">
+
+  <!-- ============================== المصادقة ============================== -->
+  <section id="view-auth" class="view auth-view" hidden>
+    <div class="auth-bg" aria-hidden="true">
+      <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+    </div>
+
+    <div class="auth-card-wrap">
+      <header class="auth-brand">
+        <img src="icon.svg" alt="" width="64" height="64" class="brand-icon" aria-hidden="true">
+        <h1 class="brand-name" data-i18n="app.name">صوتي</h1>
+        <p class="brand-tag" data-i18n="app.tagline">مدير المصاريف بالصوت</p>
+      </header>
+
+      <!-- ---------- نموذج تسجيل الدخول (native form semantics) ---------- -->
+      <div class="auth-card" id="card-signin">
+        <h2 class="auth-title" data-i18n="auth.welcomeBack">أهلاً بعودتك</h2>
+        <p class="auth-sub" data-i18n="auth.welcomeBackSub">سجّل دخولك حتى تكمل مصاريفك</p>
+
+        <!-- أزرار الدخول الفيدرالي فوق الفاصل -->
+        <div class="federated">
+          <button type="button" class="btn-fed ripple" id="btn-google">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45a5.52 5.52 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81Z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3.01c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.95H1.28v3.1A12 12 0 0 0 12 24Z"/>
+              <path fill="#FBBC05" d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56v-3.1H1.28a12 12 0 0 0 0 10.76l3.99-3.1Z"/>
+              <path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.58 1.79l3.44-3.44A11.98 11.98 0 0 0 12 0 12 12 0 0 0 1.28 6.62l3.99 3.1C6.22 6.88 8.87 4.77 12 4.77Z"/>
+            </svg>
+            <span data-i18n="auth.continueGoogle">المتابعة مع Google</span>
+          </button>
+          <button type="button" class="btn-fed ripple" id="btn-apple">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+              <path d="M16.36 12.79c.02 2.5 2.2 3.33 2.22 3.34-.02.06-.35 1.2-1.15 2.37-.7 1.02-1.42 2.03-2.56 2.05-1.12.02-1.48-.66-2.76-.66-1.28 0-1.68.64-2.74.68-1.1.04-1.94-1.1-2.64-2.11-1.43-2.07-2.52-5.85-1.06-8.39.73-1.26 2.03-2.06 3.44-2.08 1.08-.02 2.1.72 2.76.72.66 0 1.9-.89 3.2-.76.54.02 2.07.2 3.05 1.65-.08.05-1.81 1.06-1.79 3.16M14.2 5.4c.59-.71 1-1.7.88-2.68-.86.03-1.9.57-2.51 1.28-.55.63-1.03 1.64-.9 2.6.96.07 1.94-.49 2.53-1.2"/>
+            </svg>
+            <span data-i18n="auth.continueApple">المتابعة مع Apple</span>
+          </button>
+        </div>
+
+        <!-- فاصل طريقة الدخول: خط رفيع وفي وسطه "أو" -->
+        <div class="divider-or" role="separator" aria-orientation="horizontal">
+          <span class="line" aria-hidden="true"></span>
+          <span class="or-word" data-i18n="auth.or">أو</span>
+          <span class="line" aria-hidden="true"></span>
+        </div>
+
+        <form id="form-signin" novalidate>
+          <div class="field">
+            <label for="signin-email" data-i18n="auth.email">البريد الإلكتروني</label>
+            <input type="email" id="signin-email" name="email"
+                   autocomplete="username" inputmode="email" spellcheck="false"
+                   required aria-describedby="signin-error" dir="ltr"
+                   placeholder="name@example.com">
+          </div>
+
+          <div class="field">
+            <label for="signin-password" data-i18n="auth.password">كلمة المرور</label>
+            <div class="pw-wrap">
+              <input type="password" id="signin-password" name="password"
+                     autocomplete="current-password" required
+                     aria-describedby="signin-error" dir="ltr"
+                     placeholder="••••••••">
+              <button type="button" class="pw-toggle" id="toggle-signin-password"
+                      aria-label="Show password" aria-pressed="false"
+                      aria-controls="signin-password">
+                <svg class="eye-open" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-closed" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3l18 18"/><path d="M10.6 10.7a2 2 0 0 0 2.7 2.8"/><path d="M9.4 5.3A9.9 9.9 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.2 6.9A17 17 0 0 0 2 12s3.6 7 10 7a9.7 9.7 0 0 0 4-.85"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="form-error" id="signin-error" role="alert" aria-live="assertive" hidden></p>
+
+          <button type="submit" class="btn primary block ripple" id="btn-signin">
+            <span class="btn-label" data-i18n="auth.signIn">تسجيل الدخول</span>
+            <span class="spinner" hidden aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="auth-switch">
+          <span data-i18n="auth.noAccount">ما عندك حساب؟</span>
+          <button type="button" class="link" id="go-signup" data-i18n="auth.createOne">أنشئ حساباً</button>
+        </p>
+        <p class="secure-note">
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <span data-i18n="auth.secureNote">بياناتك محفوظة على جهازك ومشفّرة — ما بتطلع لأي سيرفر.</span>
+        </p>
+      </div>
+
+      <!-- ---------- نموذج إنشاء حساب ---------- -->
+      <div class="auth-card" id="card-signup" hidden>
+        <h2 class="auth-title" data-i18n="auth.createTitle">حساب جديد</h2>
+        <p class="auth-sub" data-i18n="auth.createSub">ثواني وبتبلش تحكي مصاريفك بالصوت</p>
+
+        <div class="federated">
+          <button type="button" class="btn-fed ripple" id="btn-google-2">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45a5.52 5.52 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81Z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3.01c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.95H1.28v3.1A12 12 0 0 0 12 24Z"/>
+              <path fill="#FBBC05" d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56v-3.1H1.28a12 12 0 0 0 0 10.76l3.99-3.1Z"/>
+              <path fill="#EA4335" d="M12 4.77c1.76 0 3.34.6 4.58 1.79l3.44-3.44A11.98 11.98 0 0 0 12 0 12 12 0 0 0 1.28 6.62l3.99 3.1C6.22 6.88 8.87 4.77 12 4.77Z"/>
+            </svg>
+            <span data-i18n="auth.continueGoogle">المتابعة مع Google</span>
+          </button>
+          <button type="button" class="btn-fed ripple" id="btn-apple-2">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+              <path d="M16.36 12.79c.02 2.5 2.2 3.33 2.22 3.34-.02.06-.35 1.2-1.15 2.37-.7 1.02-1.42 2.03-2.56 2.05-1.12.02-1.48-.66-2.76-.66-1.28 0-1.68.64-2.74.68-1.1.04-1.94-1.1-2.64-2.11-1.43-2.07-2.52-5.85-1.06-8.39.73-1.26 2.03-2.06 3.44-2.08 1.08-.02 2.1.72 2.76.72.66 0 1.9-.89 2.76.72 0 1.9-.89 3.2-.76.54.02 2.07.2 3.05 1.65-.08.05-1.81 1.06-1.79 3.16M14.2 5.4c.59-.71 1-1.7.88-2.68-.86.03-1.9.57-2.51 1.28-.55.63-1.03 1.64-.9 2.6.96.07 1.94-.49 2.53-1.2"/>
+            </svg>
+            <span data-i18n="auth.continueApple">المتابعة مع Apple</span>
+          </button>
+        </div>
+
+        <div class="divider-or" role="separator" aria-orientation="horizontal">
+          <span class="line" aria-hidden="true"></span>
+          <span class="or-word" data-i18n="auth.or">أو</span>
+          <span class="line" aria-hidden="true"></span>
+        </div>
+
+        <form id="form-signup" novalidate>
+          <div class="field">
+            <label for="signup-name" data-i18n="auth.name">الاسم</label>
+            <input type="text" id="signup-name" name="name" autocomplete="name" required
+                   aria-describedby="signup-error" placeholder="أبو عمر">
+          </div>
+          <div class="field">
+            <label for="signup-email" data-i18n="auth.email">البريد الإلكتروني</label>
+            <input type="email" id="signup-email" name="email" autocomplete="username"
+                   inputmode="email" spellcheck="false" required aria-describedby="signup-error"
+                   dir="ltr" placeholder="name@example.com">
+          </div>
+          <div class="field">
+            <label for="signup-password" data-i18n="auth.password">كلمة المرور</label>
+            <div class="pw-wrap">
+              <input type="password" id="signup-password" name="password"
+                     autocomplete="new-password" required minlength="8"
+                     aria-describedby="signup-error signup-hint" dir="ltr" placeholder="••••••••">
+              <button type="button" class="pw-toggle" id="toggle-signup-password"
+                      aria-label="Show password" aria-pressed="false" aria-controls="signup-password">
+                <svg class="eye-open" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="eye-closed" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3l18 18"/><path d="M10.6 10.7a2 2 0 0 0 2.7 2.8"/><path d="M9.4 5.3A9.9 9.9 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.2 6.9A17 17 0 0 0 2 12s3.6 7 10 7a9.7 9.7 0 0 0 4-.85"/>
+                </svg>
+              </button>
+            </div>
+            <p class="hint" id="signup-hint" data-i18n="auth.err.passwordShort">كلمة المرور لازم تكون ٨ محارف على الأقل.</p>
+          </div>
+          <div class="field">
+            <label for="signup-password2" data-i18n="auth.confirmPassword">تأكيد كلمة المرور</label>
+            <input type="password" id="signup-password2" name="password2"
+                   autocomplete="new-password" required aria-describedby="signup-error"
+                   dir="ltr" placeholder="••••••••">
+          </div>
+
+          <p class="form-error" id="signup-error" role="alert" aria-live="assertive" hidden></p>
+
+          <button type="submit" class="btn primary block ripple" id="btn-signup">
+            <span class="btn-label" data-i18n="auth.signUp">إنشاء حساب جديد</span>
+            <span class="spinner" hidden aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="auth-switch">
+          <span data-i18n="auth.haveAccount">عندك حساب بالفعل؟</span>
+          <button type="button" class="link" id="go-signin" data-i18n="auth.signInLink">سجّل دخولك</button>
+        </p>
+        <p class="terms-note" data-i18n="auth.termsNote">بإنشاء حساب أنت توافق على سياسة الخصوصية.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ شاشة الميزانية ========================== -->
+  <section id="view-budget" class="view budget-view" hidden>
+    <div class="auth-bg" aria-hidden="true">
+      <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+    </div>
+    <div class="budget-card">
+      <div class="budget-hero">
+        <img src="icon.svg" alt="" width="52" height="52" aria-hidden="true">
+        <h1 id="budget-heading" data-i18n="budget.title">ما ميزانيتك؟</h1>
+        <p data-i18n="budget.subtitle">حدّد مصروفك الشهري بالليرة السورية الجديدة، وبعدين ادخل للتطبيق.</p>
+      </div>
+
+      <form id="form-budget" novalidate>
+        <div class="field">
+          <label for="budget-amount" data-i18n="budget.amountLabel">الميزانية الشهرية</label>
+          <div class="amount-wrap">
+            <input type="text" id="budget-amount" name="amount" inputmode="numeric"
+                   autocomplete="off" required aria-describedby="budget-error budget-hint"
+                   placeholder="2000000">
+            <span class="amount-suffix" id="budget-suffix">ل.س</span>
+          </div>
+          <p class="hint" id="budget-hint"></p>
+        </div>
+
+        <div class="field">
+          <label for="budget-currency" data-i18n="budget.currencyLabel">عملة الميزانية</label>
+          <div class="select-wrap">
+            <select id="budget-currency" name="currency">
+              <option value="LSN" data-i18n="budget.currencyNew">ليرة سورية جديدة (ل.س)</option>
+              <option value="SYP-legacy" data-i18n="budget.currencyLegacy">ليرة سورية قديمة (قبل حذف الصفرين)</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="quick-amounts">
+          <legend data-i18n="budget.quick">مبالغ سريعة</legend>
+          <div class="chips" id="budget-chips"></div>
+        </fieldset>
+
+        <p class="form-error" id="budget-error" role="alert" aria-live="assertive" hidden></p>
+
+        <button type="submit" class="btn primary block ripple" id="btn-enter-app">
+          <span class="btn-label" data-i18n="budget.enter">الدخول للتطبيق</span>
+          <span class="spinner" hidden aria-hidden="true"></span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================== التطبيق =============================== -->
+  <section id="view-app" class="view app-view" hidden>
+    <main id="main" class="screens" tabindex="-1">
+
+      <!-- ---------- ١) المصاريف ---------- -->
+      <div class="screen" id="screen-transactions" role="tabpanel" aria-labelledby="tab-transactions" hidden>
+        <header class="screen-head">
+          <h1 data-i18n="tx.title">مصاريفك</h1>
+          <button type="button" class="icon-btn ripple" id="btn-add-tx" aria-label="إضافة مصروف" title="إضافة مصروف">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </header>
+
+        <div class="summary-card" id="summary-card">
+          <div class="summary-top">
+            <div>
+              <p class="summary-label" data-i18n="tx.spent">المصروف</p>
+              <p class="summary-value" id="sum-spent">٠ ل.س</p>
+            </div>
+            <div class="summary-right">
+              <p class="summary-label" data-i18n="tx.remaining">الباقي</p>
+              <p class="summary-value alt" id="sum-remaining">٠ ل.س</p>
+            </div>
+          </div>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="budget-progress">
+            <span class="progress-fill" id="budget-fill"></span>
+          </div>
+          <p class="progress-text" id="budget-progress-text" data-i18n-tpl="tx.progress">استهلكت ٠٪ من ميزانيتك</p>
+          <div class="summary-mini">
+            <span><b data-i18n="tx.income">الوارد</b> <i id="sum-income">٠ ل.س</i></span>
+            <span><b data-i18n="tx.balance">الرصيد</b> <i id="sum-balance">٠ ل.س</i></span>
+          </div>
+        </div>
+
+        <div class="filters">
+          <div id="tx-date-field"></div>
+          <div class="select-wrap small">
+            <select id="tx-category-filter" aria-label="الفئة"></select>
+          </div>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="tx-search" data-i18n-placeholder="tx.search" placeholder="بحث…" aria-label="بحث">
+          </div>
+        </div>
+
+        <div class="cat-breakdown" id="cat-breakdown"></div>
+
+        <ul class="tx-list" id="tx-list"></ul>
+        <div class="empty" id="tx-empty" hidden>
+          <svg viewBox="0 0 96 96" width="84" height="84" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="14" y="26" width="68" height="48" rx="10"/><path d="M14 40h68M30 58h18"/></svg>
+          <h2 data-i18n="tx.empty">لسه ما في مصاريف</h2>
+          <p data-i18n="tx.emptyHint">اضغط على «الصوت» واحكي مصروفك بالعامية.</p>
+        </div>
+      </div>
+
+      <!-- ---------- ٢) الصوت ---------- -->
+      <div class="screen" id="screen-voice" role="tabpanel" aria-labelledby="tab-voice" hidden>
+        <header class="screen-head">
+          <h1 data-i18n="voice.title">احكي مصروفك</h1>
+          <span class="engine-pill" id="engine-pill" title=""></span>
+        </header>
+        <p class="screen-sub" data-i18n="voice.subtitle">اضغط الميكروفون واحكي بالعامية.</p>
+
+        <div class="mic-stage">
+          <div class="mic-rings" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="mic-level" id="mic-level" aria-hidden="true"></div>
+          <button type="button" id="mic-btn" class="mic-btn ripple"
+                  aria-label="تسجيل صوتي" aria-pressed="false">
+            <svg class="i-mic" viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" fill="currentColor">
+              <path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z"/>
+              <path d="M18 11a1 1 0 1 1 2 0 8 8 0 0 1-7 7.94V21h2a1 1 0 1 1 0 2H9a1 1 0 1 1 0-2h2v-2.06A8 8 0 0 1 4 11a1 1 0 1 1 2 0 6 6 0 0 0 12 0Z"/>
+            </svg>
+            <svg class="i-stop" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" fill="currentColor">
+              <rect x="6" y="6" width="12" height="12" rx="3"/>
+            </svg>
+          </button>
+          <p class="mic-status" id="mic-status" role="status" aria-live="polite" data-i18n="voice.tap">اضغط لتسجّل</p>
+          <p class="mic-note" data-i18n="voice.recordingAudio">عم نسجّل الصوت كمان حتى ترجع تسمعو من «الوارد»</p>
+        </div>
+
+        <div class="voice-panel">
+          <label for="voice-input" class="panel-label">
+            <span data-i18n="voice.transcriptPlaceholder">هون بيظهر اللي حكيتو…</span>
+            <small data-i18n="voice.editBefore">فيك تعدّل النص قبل الإرسال</small>
+          </label>
+          <textarea id="voice-input" rows="3" dir="auto" spellcheck="false"
+                    data-i18n-placeholder="voice.transcriptPlaceholder"></textarea>
+
+          <div class="voice-actions">
+            <button type="button" class="btn ghost ripple" id="btn-voice-cancel" data-i18n="voice.cancel">إلغاء</button>
+            <button type="button" class="btn primary ripple" id="btn-voice-send" data-i18n="voice.send">إرسال</button>
+          </div>
+
+          <div class="parsed" id="parsed-box" hidden>
+            <h3 data-i18n="voice.detected">فهمتك هيك:</h3>
+            <div class="parsed-grid" id="parsed-grid"></div>
+            <div class="parsed-actions">
+              <button type="button" class="btn small ghost ripple" id="btn-toggle-unit" hidden></button>
+            </div>
+          </div>
+        </div>
+
+        <details class="examples">
+          <summary data-i18n="voice.examples">جرّب تقول:</summary>
+          <ul id="examples-list"></ul>
+        </details>
+      </div>
+
+      <!-- ---------- ٣) الوارد ---------- -->
+      <div class="screen" id="screen-inbox" role="tabpanel" aria-labelledby="tab-inbox" hidden>
+        <header class="screen-head">
+          <h1 data-i18n="inbox.title">الوارد</h1>
+          <span class="count-pill" id="inbox-count-pill">0</span>
+        </header>
+        <p class="screen-sub" data-i18n="inbox.subtitle">كل تسجيلاتك الصوتية محفوظة هون — اسمعها أي وقت تتأكد.</p>
+        <ul class="inbox-list" id="inbox-list"></ul>
+        <div class="empty" id="inbox-empty" hidden>
+          <svg viewBox="0 0 96 96" width="84" height="84" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M14 56h20l6 10h16l6-10h20"/><path d="M22 24h52l8 32v14a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6V56Z"/></svg>
+          <h2 data-i18n="inbox.empty">ما في تسجيلات بعد</h2>
+          <p data-i18n="inbox.emptyHint">أي مصروف تسجّلو بالصوت بينحفظ تسجيلو هون.</p>
+        </div>
+        <p class="foot-note" data-i18n="inbox.storageNote">التسجيلات محفوظة على جهازك فقط.</p>
+      </div>
+
+      <!-- ---------- ٤) الإعدادات ---------- -->
+      <div class="screen" id="screen-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+        <header class="screen-head"><h1 data-i18n="settings.title">الإعدادات</h1></header>
+
+        <div class="settings-list">
+          <section class="set-group">
+            <h2 data-i18n="settings.account">الحساب</h2>
+            <div class="set-row user-row">
+              <span class="avatar" id="set-avatar" aria-hidden="true">أ</span>
+              <span class="user-meta">
+                <b id="set-name">—</b>
+                <i id="set-email">—</i>
+              </span>
+            </div>
+            <button type="button" class="set-row ripple" id="btn-budget-edit">
+              <span class="set-ic">💰</span>
+              <span class="set-tx"><b data-i18n="settings.monthlyBudget">الميزانية الشهرية</b><i id="set-budget-value">—</i></span>
+              <span class="chev" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="set-row ripple" id="btn-signout">
+              <span class="set-ic">🚪</span>
+              <span class="set-tx"><b data-i18n="settings.signOut">تسجيل الخروج</b></span>
+            </button>
+            <button type="button" class="set-row ripple danger" id="btn-delete-account">
+              <span class="set-ic">🗑️</span>
+              <span class="set-tx"><b data-i18n="settings.deleteAccount">حذف الحساب وكل البيانات</b></span>
+            </button>
+          </section>
+
+          <section class="set-group">
+            <h2 data-i18n="settings.voice">الصوت والتسجيل</h2>
+
+            <div class="set-row switch-row">
+              <span class="set-ic">🔇</span>
+              <label class="set-tx" for="set-mute">
+                <b data-i18n="settings.mutePlayback">كتم إعادة الصوت بعد التسجيل</b>
+                <i data-i18n="settings.mutePlaybackHint">بعد الإرسال ما بينعاد نطق كلامك ولا بينشغل تسجيلك تلقائياً.</i>
+              </label>
+              <span class="switch">
+                <input type="checkbox" id="set-mute" role="switch">
+                <span class="track" aria-hidden="true"><span class="thumb"></span></span>
+              </span>
+            </div>
+
+            <div class="set-row switch-row">
+              <span class="set-ic">🔊</span>
+              <label class="set-tx" for="set-speak">
+                <b data-i18n="settings.speakResponses">نطق ردود المساعد</b>
+                <i data-i18n="settings.speakResponsesHint">بيقرا المساعد جوابه بصوت بعد كل عملية.</i>
+              </label>
+              <span class="switch">
+                <input type="checkbox" id="set-speak" role="switch">
+                <span class="track" aria-hidden="true"><span class="thumb"></span></span>
+              </span>
+            </div>
+
+            <div class="set-row slider-row">
+              <span class="set-ic">🐢</span>
+              <label class="set-tx" for="set-rate"><b data-i18n="settings.voiceRate">سرعة الصوت</b><i id="set-rate-val">1.0×</i></label>
+              <input type="range" id="set-rate" min="0.6" max="1.6" step="0.05" value="1">
+            </div>
+            <div class="set-row slider-row">
+              <span class="set-ic">🎚️</span>
+              <label class="set-tx" for="set-pitch"><b data-i18n="settings.voicePitch">طبقة الصوت</b><i id="set-pitch-val">1.0</i></label>
+              <input type="range" id="set-pitch" min="0.6" max="1.5" step="0.05" value="1">
+            </div>
+            <div class="set-row">
+              <span class="set-ic">🎙️</span>
+              <span class="set-tx"><b data-i18n="settings.language">لغة التعرّف</b><i id="set-engine-name">—</i></span>
+              <div class="select-wrap small inline">
+                <select id="set-speech-lang" aria-label="لغة التعرّف"></select>
+              </div>
+            </div>
+            <button type="button" class="set-row ripple" id="btn-test-voice">
+              <span class="set-ic">▶️</span>
+              <span class="set-tx"><b data-i18n="settings.testVoice">جرّب الصوت</b><i data-i18n="settings.engineStatus">حالة محرك الصوت</i></span>
+            </button>
+            <div class="set-row status-row" id="engine-status-row">
+              <span class="set-ic">⚙️</span>
+              <span class="set-tx"><b data-i18n="settings.engineStatus">حالة محرك الصوت</b><i id="engine-status">—</i></span>
+            </div>
+          </section>
+
+          <section class="set-group">
+            <h2 data-i18n="settings.currencySection">العملة والميزانية</h2>
+            <div class="set-row">
+              <span class="set-ic">🇸🇾</span>
+              <span class="set-tx">
+                <b data-i18n="settings.displayUnit">وحدة العرض</b>
+                <i data-i18n="settings.displayUnitHint">القيمة المخزّنة دائماً بالليرة الجديدة.</i>
+              </span>
+              <div class="select-wrap small inline">
+                <select id="set-display-unit" aria-label="وحدة العرض">
+                  <option value="new">ل.س جديدة</option>
+                  <option value="legacy">ل.س قديمة</option>
+                </select>
+              </div>
+            </div>
+            <div class="set-row static">
+              <span class="set-ic">ℹ️</span>
+              <span class="set-tx"><b data-i18n="budget.hintLegacy">كل ١٠٠ ليرة قديمة = ١ ليرة سورية جديدة.</b></span>
+            </div>
+          </section>
+
+          <section class="set-group">
+            <h2 data-i18n="settings.appearance">المظهر</h2>
+            <div class="set-row">
+              <span class="set-ic">🌐</span>
+              <span class="set-tx"><b data-i18n="settings.language">اللغة</b></span>
+              <div class="select-wrap small inline">
+                <select id="set-locale" aria-label="اللغة">
+                  <option value="ar">العربية (سوريا)</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+            </div>
+            <div class="set-row">
+              <span class="set-ic">🎨</span>
+              <span class="set-tx"><b data-i18n="settings.themeLight">المظهر</b></span>
+              <div class="seg" role="radiogroup" id="theme-seg">
+                <button type="button" role="radio" data-theme="light" data-i18n="settings.themeLight">فاتح</button>
+                <button type="button" role="radio" data-theme="dark" data-i18n="settings.themeDark">داكن</button>
+                <button type="button" role="radio" data-theme="system" data-i18n="settings.themeSystem">النظام</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="set-group">
+            <h2 data-i18n="settings.data">البيانات</h2>
+            <button type="button" class="set-row ripple" id="btn-export">
+              <span class="set-ic">⬇️</span><span class="set-tx"><b data-i18n="settings.export">تصدير البيانات (JSON)</b><i id="set-storage">—</i></span>
+            </button>
+            <button type="button" class="set-row ripple" id="btn-import">
+              <span class="set-ic">⬆️</span><span class="set-tx"><b data-i18n="settings.import">استيراد بيانات</b></span>
+            </button>
+            <input type="file" id="file-import" accept="application/json,.json" hidden>
+            <button type="button" class="set-row ripple danger" id="btn-clear-tx">
+              <span class="set-ic">🧹</span><span class="set-tx"><b data-i18n="settings.clearTx">حذف كل المصاريف</b></span>
+            </button>
+          </section>
+
+          <section class="set-group">
+            <h2 data-i18n="settings.about">حول التطبيق</h2>
+            <button type="button" class="set-row ripple" id="btn-privacy">
+              <span class="set-ic">🔒</span><span class="set-tx"><b data-i18n="settings.privacy">سياسة الخصوصية</b></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="set-row ripple" id="btn-terms">
+              <span class="set-ic">📄</span><span class="set-tx"><b data-i18n="settings.terms">شروط الاستخدام</b></span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="set-row static">
+              <span class="set-ic">🏷️</span>
+              <span class="set-tx"><b data-i18n="settings.version">رقم الإصدار</b><i id="set-version">1.0.0</i></span>
+            </div>
+          </section>
+
+          <footer class="app-credit">
+            <div class="credit-badge" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M24 6l4.9 10.6 11.6 1.4-8.6 8 2.3 11.5L24 31.8 13.8 37.5l2.3-11.5-8.6-8 11.6-1.4Z"/></svg>
+            </div>
+            <p class="credit-line" data-i18n="app.madeBy">تم إنشاء التطبيق بواسطة أبو عمر</p>
+            <p class="credit-sub" data-i18n="settings.credits">صُنع بحب في سوريا 🇸🇾</p>
+            <p class="credit-ver"><span data-i18n="app.version">الإصدار</span> 1.0.0</p>
+          </footer>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== شريط التنقل السفلي (Tab bar) =================== -->
+    <nav id="tabbar" class="tabbar" aria-label="التنقل الرئيسي">
+      <a href="#/transactions" class="tab ripple" id="tab-transactions" data-route="transactions" aria-current="page">
+        <span class="tab-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h18M7 15h5"/></svg>
+        </span>
+        <span class="tab-label" data-i18n="nav.transactions">المصاريف</span>
+      </a>
+      <a href="#/voice" class="tab ripple" id="tab-voice" data-route="voice">
+        <span class="tab-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </span>
+        <span class="tab-label" data-i18n="nav.voice">الصوت</span>
+      </a>
+      <a href="#/inbox" class="tab ripple" id="tab-inbox" data-route="inbox">
+        <span class="tab-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h5l2 3h4l2-3h5"/><path d="M5 5h14l2 8v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4Z"/></svg>
+          <span class="badge" id="inbox-badge" hidden>0</span>
+        </span>
+        <span class="tab-label" data-i18n="nav.inbox">الوارد</span>
+      </a>
+      <a href="#/settings" class="tab ripple" id="tab-settings" data-route="settings">
+        <span class="tab-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 14.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1-1.56V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9a1.7 1.7 0 0 0 1.56 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1.5Z"/></svg>
+        </span>
+        <span class="tab-label" data-i18n="nav.settings">الإعدادات</span>
+      </a>
+    </nav>
+  </section>
+
+  <!-- ============================ نوافذ منبثقة ============================ -->
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-head">
+        <h2 id="modal-title">—</h2>
+        <button type="button" class="icon-btn ripple" id="modal-close" aria-label="إغلاق">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+      <div class="modal-body" id="modal-body"></div>
+      <footer class="modal-foot" id="modal-foot"></footer>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- تحذير بيئة غير آمنة للميكروفون -->
+  <div class="mic-warning" id="mic-warning" hidden>
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v5M12 17.5v.5"/><path d="M10.3 3.9 2.6 17.4A2 2 0 0 0 4.3 20.4h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+    <span id="mic-warning-text"></span>
+    <button type="button" id="mic-warning-open" class="link"></button>
+  </div>
+</div>
+
+<div class="boot" id="boot">
+  <img src="icon.svg" alt="" width="96" height="96">
+  <p class="boot-name">صوتي</p>
+  <div class="boot-bar"><span></span></div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

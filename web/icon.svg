@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Sawti app icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E9F6E"/>
+      <stop offset="0.55" stop-color="#0B7A5B"/>
+      <stop offset="1" stop-color="#075E4A"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.98"/>
+      <stop offset="1" stop-color="#E6FFF6" stop-opacity="0.92"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#03231B" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="118" ry="118" fill="url(#bg)"/>
+
+  <!-- sound waves: clean, symmetric, unmistakable -->
+  <g stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="16" stroke-linecap="round" fill="none">
+    <path d="M104 190c-22 20-22 112 0 132"/>
+    <path d="M408 190c22 20 22 112 0 132"/>
+  </g>
+
+  <!-- coin / lira disc -->
+  <g filter="url(#soft)">
+    <circle cx="256" cy="256" r="152" fill="url(#ring)"/>
+    <circle cx="256" cy="256" r="152" fill="none" stroke="#0B7A5B" stroke-opacity="0.18" stroke-width="6"/>
+  </g>
+
+  <!-- microphone glyph inside the coin -->
+  <g fill="#0B7A5B">
+    <rect x="232" y="150" width="48" height="118" rx="24"/>
+    <path d="M186 244a10 10 0 0 1 20 0 50 50 0 0 0 100 0 10 10 0 0 1 20 0 70 70 0 0 1-60 69.4V344h34a10 10 0 0 1 0 20h-88a10 10 0 0 1 0-20h34v-30.6A70 70 0 0 1 186 244Z"/>
+  </g>
+
+  <!-- lira mark, bottom band -->
+  <g>
+    <path d="M96 402h320v34a34 34 0 0 1-34 34H130a34 34 0 0 1-34-34Z" fill="#053D31" fill-opacity="0.55"/>
+    <g stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" fill="none">
+      <path d="M212 412v40l40 12 40-12v-40"/>
+      <path d="M214 424l66 10"/>
+      <path d="M214 438l66 10"/>
+    </g>
+  </g>
+</svg>

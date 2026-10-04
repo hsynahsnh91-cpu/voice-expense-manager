@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- قواعد النسخ الاحتياطي: نحفظ المصاريف والتفضيلات، ونستثني الملفات الحساسة -->
+<full-backup-content>
+    <include domain="file" path="sawti/" />
+    <include domain="sharedpref" path="sawti_prefs.xml" />
+    <exclude domain="sharedpref" path="sawti_secure_prefs.xml" />
+    <exclude domain="file" path="sawti/audio_cache/" />
+</full-backup-content>

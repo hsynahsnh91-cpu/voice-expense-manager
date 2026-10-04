@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12+ : قواعد استخراج البيانات أثناء النقل أو النسخ الاحتياطي السحابي -->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="file" path="sawti/" />
+        <include domain="sharedpref" path="sawti_prefs.xml" />
+        <exclude domain="sharedpref" path="sawti_secure_prefs.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="file" path="sawti/" />
+        <include domain="sharedpref" path="sawti_prefs.xml" />
+        <include domain="sharedpref" path="sawti_secure_prefs.xml" />
+    </device-transfer>
+</data-extraction-rules>

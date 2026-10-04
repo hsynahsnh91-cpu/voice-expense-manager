@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =====================================================================
+     أيقونة «صوتي» — الأمامية التكيفية (108dp، المنطقة الآمنة 66dp بالوسط)
+
+     التصميم: قرش/عملة بيضاء كبيرة وواضحة + ميكروفون أخضر داخلها +
+     موجتا صوت على الجانبين. الشكل عريض وبسيط ويُقرأ من بعيد على أنه
+     «مالية + صوت»، ولا يحوي أي عنصر يمكن أن يُساء فهمه.
+     ===================================================================== -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- موجتا الصوت (يسار) -->
+    <path
+        android:pathData="M27,45 C21.5,49.5 21.5,58.5 27,63"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.42"
+        android:strokeWidth="4.2"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+    <!-- موجتا الصوت (يمين) -->
+    <path
+        android:pathData="M81,45 C86.5,49.5 86.5,58.5 81,63"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.42"
+        android:strokeWidth="4.2"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- العملة: قرش أبيض كبير -->
+    <path
+        android:pathData="M54,26 A28,28 0 1,1 53.99,26 Z"
+        android:fillColor="#FFFFFF" />
+
+    <!-- حافة العملة (حلقة داخلية خفيفة تعطي إحساس القطعة النقدية) -->
+    <path
+        android:pathData="M54,31.5 A22.5,22.5 0 1,1 53.99,31.5 Z"
+        android:strokeColor="#0B7A5B"
+        android:strokeAlpha="0.16"
+        android:strokeWidth="1.8"
+        android:fillColor="#00000000" />
+
+    <!-- جسم الميكروفون (كبسولة) -->
+    <path
+        android:pathData="M54,38 C56.87,38 59.2,40.33 59.2,43.2 L59.2,57.8 C59.2,60.67 56.87,63 54,63 C51.13,63 48.8,60.67 48.8,57.8 L48.8,43.2 C48.8,40.33 51.13,38 54,38 Z"
+        android:fillColor="#0B7A5B" />
+
+    <!-- قوس حامل الميكروفون -->
+    <path
+        android:pathData="M42.5,53 A11.5,11.5 0 0,1 65.5,53"
+        android:strokeColor="#0B7A5B"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- عمود القاعدة -->
+    <path
+        android:pathData="M54,64.5 L54,70"
+        android:strokeColor="#0B7A5B"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+
+    <!-- قاعدة الميكروفون -->
+    <path
+        android:pathData="M46,70.2 L62,70.2"
+        android:strokeColor="#0B7A5B"
+        android:strokeWidth="3.6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000" />
+</vector>
