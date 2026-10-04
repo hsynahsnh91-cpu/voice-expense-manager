@@ -1,17 +1,3 @@
-name: Build Android APK
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
     steps:
       # 1. جلب الكود من المستودع
       - name: Checkout Repository
@@ -24,15 +10,13 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3. إعطاء صلاحيات التشغيل لملف Gradlew داخل مجلد android
+      # 3. إعطاء صلاحيات التشغيل لملف Gradlew عبر مساره المباشر
       - name: Grant Execute Permission for Gradlew
-        run: chmod +x gradlew
-        working-directory: android
+        run: chmod +x android/gradlew
 
-      # 4. بناء ملف APK داخل مجلد android
+      # 4. بناء ملف APK عبر المسار المباشر
       - name: Build APK
-        run: ./gradlew assembleDebug
-        working-directory: android
+        run: cd android && ./gradlew assembleDebug
 
       # 5. رفع ملف APK الناتج لتتمكن من تحميله
       - name: Upload APK Artifact
