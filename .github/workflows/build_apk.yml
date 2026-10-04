@@ -17,36 +17,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. إعداد بيئة جافا المتوافقة
+      # 2. إعداد بيئة جافا المتوافقة (ضرورية للـ Kotlin والـ Gradle)
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3. إعداد بيئة نود لبناء ملفات الويب والـ JavaScript
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # 4. تثبيت الحزم وبناء ملفات الويب (ضروري لأن مشروعك يحتوي على JS و Web)
-      - name: Install Dependencies and Build Web Project
-        run: |
-          npm install
-          npm run build --if-present
-
-      # 5. إعطاء صلاحيات التشغيل لملف Gradlew عبر مساره المباشر
+      # 3. إعطاء صلاحيات التشغيل لملف Gradlew عبر مساره المباشر داخل مجلد android
       - name: Grant Execute Permission for Gradlew
         run: chmod +x android/gradlew
 
-      # 6. بناء ملف APK عبر المسار المباشر
+      # 4. بناء ملف APK مباشرة باستخدام Gradle
       - name: Build APK
         run: cd android && ./gradlew assembleDebug
 
-      # 7. رفع ملف APK الناتج لتتمكن من تحميله
+      # 5. رفع ملف APK الناتج لتتمكن من تحميله
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk # 👈 تم تصحيح الكلمة من app/build/outpust إلى المسار الصحيح
+          path: android/app/build/outputs/apk/debug/app-debug.apk
