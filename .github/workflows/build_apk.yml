@@ -24,19 +24,19 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3. إعطاء صلاحيات التشغيل لملف Gradlew (مع تحديد المجلد الصحيح)
+      # 3. إعطاء صلاحيات التشغيل لملف Gradlew داخل مجلد android
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
-        working-directory: android # 👈 لكي يبحث عن الملف داخل مجلد android
+        working-directory: android
 
-      # 4. بناء ملف APK (مع تحديد المجلد الصحيح)
+      # 4. بناء ملف APK داخل مجلد android
       - name: Build APK
         run: ./gradlew assembleDebug
-        working-directory: android # 👈 لكي ينفذ أمر البناء داخل مجلد android
+        working-directory: android
 
       # 5. رفع ملف APK الناتج لتتمكن من تحميله
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk # 👈 مسار المخرجات الصحيح
+          path: android/app/build/outputs/apk/debug/app-debug.apk
